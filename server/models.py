@@ -15,6 +15,8 @@ class Earthquake(db.Model, SerializerMixin):
     location = db.Column(db.String)
     year = db.Column(db.Integer)
 
-    
+    ""
+
+
 
 
