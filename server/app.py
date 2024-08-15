@@ -36,6 +36,17 @@ def get_earthquake(id):
     return make_response(body, status)
 
 
+@app.route('/earthquakes/magnitude/<float:magnitude>')
+def get_magnitude(magnitude):
+    mags = []
+    for mag in Earthquake.query.filter(Earthquake.magnitude >= magnitude).all():
+        mags.append(mag.to_dict())
+    body = {'count': len(mags),
+            'quakes': mags
+            }
+    
+    return make_response(body, 200)
+
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
